@@ -1,35 +1,21 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
   <div class="container-fluid container">
     <a class="navbar-brand" href="{{ url_for('home') }}">Blog FP</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Alternar navegação">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="{{ url_for('home') }}">Início</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('usuarios') }}">Usuários</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('contato') }}">Contato</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('sobre') }}">Sobre</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('projetos') }}">Projetos</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('todo') }}">To Do</a>
-        </li>
+        <li class="nav-item"><a class="nav-link" href="{{ url_for('home') }}">Início</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ url_for('usuarios') }}">Usuários</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ url_for('contato') }}">Contato</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ url_for('sobre') }}">Sobre</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ url_for('projetos') }}">Projetos</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ url_for('todo') }}">To Do</a></li>
       </ul>
-
-      <!-- Idioma + Modo claro/escuro -->
       <ul class="navbar-nav mb-2 mb-lg-0 me-3">
-        <!-- Idiomas -->
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="idiomaDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             🌐 Idioma
@@ -40,33 +26,16 @@
             <li><a class="dropdown-item" href="?lang=es">🇪🇸 Español</a></li>
           </ul>
         </li>
-
-        <!-- Modo claro/escuro -->
-        <li class="nav-item">
-          <a class="nav-link" href="#" id="toggleTheme" title="Alternar tema">
-            🌓 Tema
-          </a>
-        </li>
+        <li class="nav-item"><a class="nav-link" href="#" id="toggleTheme" title="Alternar tema">🌓 Tema</a></li>
       </ul>
-
       <ul class="d-flex navbar-nav">
         {% if current_user.is_authenticated %}
-            <li class="nav-item">
-              <a class="nav-link" href="{{ url_for('criar_post') }}">Criar Post</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ url_for('perfil') }}">Meu Perfil</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ url_for('sair') }}">Sair</a>
-            </li>
+            <li class="nav-item"><a class="nav-link" href="{{ url_for('criar_post') }}">Criar Post</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ url_for('perfil') }}">Meu Perfil</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ url_for('sair') }}">Sair</a></li>
         {% else %}
-          <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('login') }}">Login</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('login') }}">Criar Conta</a>
-          </li>
+            <li class="nav-item"><a class="nav-link" href="{{ url_for('login') }}">Login</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ url_for('login') }}">Criar Conta</a></li>
         {% endif %}
       </ul>
     </div>
