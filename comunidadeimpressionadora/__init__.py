@@ -8,8 +8,11 @@ app = Flask(__name__)
 
 app.config['SECRET_KEY'] = '29cecf8afd6176f06bb3f55472d490d1'
 
-caminho_db = os.path.join(os.path.dirname(__file__), 'comunidade.db')
-app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{caminho_db}'
+if os.getenv('DATABASE_URL'):
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
+else:
+    caminho_db = os.path.join(os.path.dirname(__file__), 'comunidade.db')
+    app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{caminho_db}'
 
 database = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
