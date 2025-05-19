@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+
+        <div class="container mt-3">
+            <h1 style="color: orange">Blog - Fagner Paulo</h1>
+            <h2>Projetos, testes e você em um só lugar</h2>
+            <hr>
+            {% for post in posts %}
+            <div class="row border mt-4 p-3 meupost">
+                <div class="col col-3">
+                    <div class="image pe-2"> <img src="{{ url_for('static', filename='fotos_perfil/{}'.format(post.autor.foto_perfil)) }}" class="rounded" width="200"> </div>
+                    <strong>{{ post.autor.username }}</strong>
+                    <div class="row justify-content-center">
+                            {% for curso in post.autor.cursos.split(';') %}
+                                <button type="button" class="btn btn-success mt-2" disabled>{{ curso }}</button>
+                            {% endfor %}
+                    </div>
+                </div>
+                <div class="col col-9">
+                    
+                        <h3>
+                            <a style="text-decoration: none" href="{{ url_for('exibir_post', post_id=post.id) }}">{{ post.titulo }}</a>
+                            <small class="text-muted" style="font-size: 15px"> - Data de Criação: {{ post.data_criacao.strftime('%d/%m/%Y') }}
+                                {% if form %}
+                                - <a href="#form_editarpost">Editar Post</a> / <a href="#" class="text-danger" data-bs-toggle="modal" data-bs-target="#ExcluirPost">Excluir Post</a>
+                                {% endif %}
+                            </small>
+                        </h3>
+                        <p>{{ post.corpo | replace('\n', '<br>') | safe }}</p>
+                </div>
+
+            </div>
+            {% endfor %}
+        </div>
+
+{% endblock %}
