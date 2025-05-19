@@ -1,8 +1,6 @@
 {% extends 'base.html' %}
 
-
 {% block body %}
-
 <div class="row border mt-4 p-3 meupost">
     <div class="col-md-3 col-sm-12 text-center">
         <div class="image pe-2">
@@ -25,33 +23,30 @@
                 {% endif %}
             </small>
         </h3>
-        <p class="text-break">{{ post.corpo | replace('\n', '<br>') | safe }}</p>
+        <p class="text-break">{{ post.corpo | replace('
+', '<br>') | safe }}</p>
     </div>
 </div>
 
+{% block form_editar_post %}{% endblock %}
 
-    {% block form_editar_post %}
-    {% endblock %}
-
-<!-- Modal -->
 <div class="modal fade" id="ExcluirPost" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Excluir Post</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          Você quer realmente excluir esse post? (Essa ação não pode ser desfeita)
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-            <form method="POST" action="{{ url_for('excluir_post', post_id=post.id) }}">
-              <button type="submit" class="btn btn-danger">Excluir Post</button>
-            </form>
-        </div>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Excluir Post</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+      </div>
+      <div class="modal-body">
+        Você quer realmente excluir esse post? (Essa ação não pode ser desfeita)
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <form method="POST" action="{{ url_for('excluir_post', post_id=post.id) }}">
+          <button type="submit" class="btn btn-danger">Excluir Post</button>
+        </form>
       </div>
     </div>
   </div>
-
+</div>
 {% endblock %}
